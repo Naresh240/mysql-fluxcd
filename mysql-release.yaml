@@ -1,0 +1,31 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: mysql-repo
+  namespace: default
+spec:
+  interval: 5m0s
+  url: https://charts.bitnami.com/bitnami
+
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: mysql-release
+  namespace: default
+spec:
+  interval: 5m
+  releaseName: mysql-release
+  chart:
+    spec:
+      chart: mysql
+      version: 9.4.5
+      sourceRef:
+        kind: HelmRepository
+        name: mysql-repo
+        namespace: default
+      interval: 1m
+  valuesFrom:
+  - kind: ConfigMap
+    name: mysql-values
