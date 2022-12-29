@@ -8,7 +8,7 @@ generatorOptions:
  disableNameSuffixHash: true
  
 configMapGenerator:
-- name: example-configmap-1
+- name: mysql-values
   files:
   - values.yaml=mysql-values.yaml
 
