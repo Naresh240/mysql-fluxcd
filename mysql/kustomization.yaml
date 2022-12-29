@@ -9,6 +9,7 @@ generatorOptions:
  
 configMapGenerator:
 - name: mysql-values
+  namespace: default
   files:
   - values.yaml=mysql-values.yaml
 
